@@ -5,11 +5,11 @@ language: elixir
 elixir:
   - "1.11.4"
   - "1.10.4"
-  - "1.9.4"
-  - "1.8.2"
 
 otp_release:
-  - "23.0.2"
+  - "22.3"
+  - "23.1.2"
+  - "23.2.5"
 
 env:
   - MIX_ENV=test
@@ -20,6 +20,7 @@ cache:
     - deps
 
 install:
+  - mix local.hex --force
   - mix deps.get
 
 script:
