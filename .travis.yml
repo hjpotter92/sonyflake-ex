@@ -21,6 +21,7 @@ cache:
 
 install:
   - mix local.hex --force
+  - mix local.rebar3 --force
   - mix deps.get
 
 script:
