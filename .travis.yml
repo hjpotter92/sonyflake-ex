@@ -28,4 +28,4 @@ script:
   - mix do compile --warnings-as-errors, coveralls.json
 
 after_success:
-  - bash <(curl -o https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)

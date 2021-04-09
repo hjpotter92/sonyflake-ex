@@ -39,12 +39,19 @@ defmodule Sonyflake.Utils do
   end
 
   @spec lower_16_bit_private_ip() :: non_neg_integer
+  @doc """
+  Fetches first non-local public IPv4 address, and returns
+  the lower 16-bit value.
+  """
   def lower_16_bit_private_ip() do
     {_, _, b3, b4} = private_ipv4()
     (b3 <<< 8) + b4
   end
 
   @spec to_sonyflake_time(DateTime.t()) :: non_neg_integer
+  @doc """
+  Converts any given `DateTime` value to a 10-microsecond accuracy integer value.
+  """
   def to_sonyflake_time(datetime) do
     (DateTime.to_unix(datetime, :nanosecond) / Sonyflake.Constants.sonyflake_time_unit())
     |> trunc()
