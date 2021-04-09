@@ -1,0 +1,26 @@
+os: linux
+dist: focal
+language: elixir
+
+elixir:
+  - "1.11.4"
+  - "1.10.4"
+  - "1.9.4"
+  - "1.8.2"
+
+env:
+  - MIX_ENV=test
+
+cache:
+  directories:
+    - _build
+    - deps
+
+install:
+  - mix deps.get
+
+script:
+  - mix do compile --warnings-as-errors, coveralls.json
+
+after_success:
+  - bash <(curl -o https://codecov.io/bash)

@@ -11,7 +11,8 @@ defmodule Sonyflake.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: description()
+      description: description(),
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -28,6 +29,7 @@ defmodule Sonyflake.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:excoveralls, "~> 0.5.7", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
@@ -40,7 +42,10 @@ defmodule Sonyflake.MixProject do
     [
       name: "sonyflake",
       licenses: ["MIT"],
-      links: [docs: "https://hexdocs.pm/sonyflake/"],
+      links: %{
+        GitHub: "https://github.com/hjpotter92/sonyflake-ex",
+        CodeCoverage: "https://app.codecov.io/gh/hjpotter92/sonyflake-ex"
+      },
       files: files(),
       maintainers: ["hjpotter92"],
       source_url: "https://github.com/hjpotter92/sonyflake-ex"
