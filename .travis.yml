@@ -22,7 +22,7 @@ cache:
 install:
   - mix local.hex --force
   - mix deps.get
-  - mix local.rebar3 --force
+  - mix local.rebar --force
 
 script:
   - mix do compile --warnings-as-errors, coveralls.json

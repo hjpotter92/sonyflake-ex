@@ -17,6 +17,9 @@ defmodule Sonyflake.Setting do
   end
 
   @spec new :: %Sonyflake.Setting{machine_id: non_neg_integer, start_time: non_neg_integer}
+  @doc """
+  Generate configuration for initialising a new Sonyflake generator instance.
+  """
   def new() do
     %Sonyflake.Setting{
       start_time: Sonyflake.Constants.sonyflake_epoch(),
@@ -26,6 +29,11 @@ defmodule Sonyflake.Setting do
 
   @spec new(DateTime.t()) ::
           nil | %Sonyflake.Setting{machine_id: non_neg_integer, start_time: non_neg_integer}
+  @doc """
+  Generate configuration for initialising a new Sonyflake generator instance.
+
+  The `start_time` is used as initial seed for sequence.
+  """
   def new(start_time) do
     start_time = get_start_time(start_time)
 
@@ -41,6 +49,13 @@ defmodule Sonyflake.Setting do
 
   @spec new(DateTime.t(), (() -> non_neg_integer), (non_neg_integer -> boolean)) ::
           nil | %Sonyflake.Setting{machine_id: non_neg_integer, start_time: non_neg_integer}
+  @doc """
+  Generate configuration for initialising a new Sonyflake generator instance.
+
+  The `start_time` is used as initial seed for sequence.  `machine_id`
+  is used to generate a `non_neg_integer` identifier for machine,
+  which is then further validated with the `check_machine_id` call.
+  """
   def new(start_time, machine_id, check_machine_id) do
     id = machine_id.()
     valid_id = check_machine_id.(id)
