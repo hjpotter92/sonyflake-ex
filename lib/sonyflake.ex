@@ -11,24 +11,49 @@ defmodule Sonyflake do
           elapsed_time: 0,
           machine_id: non_neg_integer,
           msb: 0,
-          sequence: non_neg_integer,
+          sequence: 255,
           start_time: non_neg_integer
         }
   @doc """
   Create an instance of `Sonyflake` unique ID generator.
   """
   def new() do
-    start_time = Sonyflake.Constants.sonyflake_epoch()
+    setting = Sonyflake.Setting.new()
 
     %Sonyflake{
       sequence: (1 <<< Sonyflake.Constants.bit_len_sequence()) - 1,
-      msb: 0,
-      machine_id: Sonyflake.Utils.lower_16_bit_private_ip(),
-      start_time: start_time
+      machine_id: setting.machine_id,
+      start_time: setting.start_time
     }
   end
 
-  @spec current_elapsed_time(%Sonyflake{start_time: number}) :: integer
+  @spec new(%Sonyflake.Setting{
+          start_time: non_neg_integer,
+          machine_id: non_neg_integer
+        }) ::
+          nil
+          | %Sonyflake{
+              elapsed_time: 0,
+              machine_id: non_neg_integer,
+              msb: 0,
+              sequence: 255,
+              start_time: non_neg_integer
+            }
+  @doc """
+  Create an instance of `Sonyflake` unique ID generator, using a predetermined
+  setting.
+  """
+  def new(setting) do
+    if is_nil(setting),
+      do: nil,
+      else: %Sonyflake{
+        sequence: (1 <<< Sonyflake.Constants.bit_len_sequence()) - 1,
+        machine_id: setting.machine_id,
+        start_time: setting.start_time
+      }
+  end
+
+  @spec current_elapsed_time(%Sonyflake{start_time: non_neg_integer}) :: non_neg_integer
   @doc """
   Get time elapsed since the SonyFlake ID generator was initialised.
   """
@@ -37,20 +62,20 @@ defmodule Sonyflake do
   end
 
   @spec next_id(%Sonyflake{
-          elapsed_time: integer,
-          machine_id: integer,
-          msb: any,
-          sequence: integer,
-          start_time: number
+          elapsed_time: non_neg_integer,
+          machine_id: non_neg_integer,
+          msb: non_neg_integer,
+          sequence: non_neg_integer,
+          start_time: non_neg_integer
         }) ::
           {:ok,
            %Sonyflake{
-             elapsed_time: integer,
-             machine_id: integer,
-             msb: any,
-             sequence: integer,
-             start_time: number
-           }, integer}
+             elapsed_time: non_neg_integer,
+             machine_id: non_neg_integer,
+             msb: non_neg_integer,
+             sequence: non_neg_integer,
+             start_time: non_neg_integer
+           }, non_neg_integer}
   @doc """
   Generates and returns the next unique ID.
 
