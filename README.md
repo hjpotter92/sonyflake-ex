@@ -42,5 +42,5 @@ The MIT License (MIT).
   [codecov]: https://codecov.io/gh/hjpotter92/sonyflake-ex
   [codecov-badge]: https://codecov.io/gh/hjpotter92/sonyflake-ex/branch/main/graph/badge.svg?token=C0gJpcbuXe
   [hexdocs]: https://hexdocs.pm/sonyflake/
-  [travis-ci]: https://travis-ci.com/hjpotter92/sonyflake-py
-  [travis-ci-badge]: https://travis-ci.com/hjpotter92/sonyflake-py.svg?branch=master
+  [travis-ci]: https://travis-ci.com/hjpotter92/sonyflake-ex
+  [travis-ci-badge]: https://travis-ci.com/hjpotter92/sonyflake-ex.svg?branch=main

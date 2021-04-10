@@ -1,7 +1,7 @@
 defmodule Sonyflake.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "1.0.0"
 
   def project() do
     [
@@ -44,7 +44,8 @@ defmodule Sonyflake.MixProject do
       licenses: ["MIT"],
       links: %{
         GitHub: "https://github.com/hjpotter92/sonyflake-ex",
-        CodeCoverage: "https://app.codecov.io/gh/hjpotter92/sonyflake-ex"
+        CodeCoverage: "https://app.codecov.io/gh/hjpotter92/sonyflake-ex",
+        Builds: "https://travis-ci.com/hjpotter92/sonyflake-ex"
       },
       files: files(),
       maintainers: ["hjpotter92"],
