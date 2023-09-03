@@ -99,7 +99,8 @@ defmodule Sonyflake do
                 overtime = new_elapsed_time - current_time
                 Process.sleep(overtime)
                 %Sonyflake{sonyflake | sequence: sequence, elapsed_time: new_elapsed_time}
-              )
+              ),
+            else: sonyflake
 
         temp
       end
